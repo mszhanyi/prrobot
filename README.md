@@ -1,2 +1,2 @@
 # prrobot
-robot to submit PRs automatically
+robots to submit PRs automatically

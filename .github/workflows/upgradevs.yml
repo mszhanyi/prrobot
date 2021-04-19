@@ -32,10 +32,9 @@ jobs:
       env:
         PULL_REQUEST_TOKEN: ${{secrets.PYTORCH_KEY}}
         PULL_REQUEST_REPOSITORY: "mszhanyi/pytorch"
-        PULL_REQUEST_FROM_BRANCH: "mszhanyi:zhanyi/updatevcver"
+        PULL_REQUEST_FROM_BRANCH: "zhanyi/updatevs"
         PULL_REQUEST_BRANCH: "master"
         PULL_REQUEST_TITLE: "[Testing] Use Actions"
-        PULL_REQUEST_FROM_BRANCH: "zhanyi/updatevs"
         PASS_IF_EXISTS: "1"
         PULL_REQUEST_UPDATE: "1"
 

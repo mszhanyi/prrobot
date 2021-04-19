@@ -1,8 +1,8 @@
-name: GitHub Actions Build and Deploy Demo
+name: Update VS in Pytorch
 on:
   push:
     branches:
-      - master
+      - main
   schedule:
     - cron: '* * 1/14 * *'
 jobs:

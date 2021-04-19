@@ -26,8 +26,6 @@ jobs:
     - name: Make Commits
       working-directory: ./scripts
       run: |
-        pwd
-        ls
         bash make_vs_commits.sh
     - name: create Pull Request
       uses: vsoch/pull-request-action@master

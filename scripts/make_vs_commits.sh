@@ -14,7 +14,7 @@ git remote set-url origin https://mszhanyi:${pytorch_token}@github.com/mszhanyi/
 git push
 
 git checkout -b zhanyi/updatevs
-git branch --set-upstream-to=origin/zhanyi/updatevcver zhanyi/updatevs
+git branch --set-upstream-to=origin/zhanyi/updatevs zhanyi/updatevs
 git pull
 python -m pip install lxml
 python ../scripts/updatevsver.py

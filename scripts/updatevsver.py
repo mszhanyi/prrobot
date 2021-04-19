@@ -30,7 +30,9 @@ def updatefile(file_name, updates):
 
 if __name__ == "__main__":
     version, link = get_lastest_vs()
+    
     updates = []
     updates.append((3, f"# {version} buildTools"))
     updates.append((4, f"$VS_DOWNLOAD_LINK = '{link}'"))
     updatefile("../pytorch/.circleci/scripts/vs_install.ps1", updates)
+    updatefile("../builder/windows/internal/vs2019_install.ps1", updates)

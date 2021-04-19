@@ -32,7 +32,7 @@ jobs:
       env:
         GITHUB_TOKEN: ${{secrets.PYTORCH_KEY}}
         GITHUB_REPOSITORY: "mszhanyi/pytorch"
-        PULL_REQUEST_FROM_BRANCH: "zhanyi/updatevcver"
+        PULL_REQUEST_FROM_BRANCH: "zhanyi/updatevs"
         PULL_REQUEST_BRANCH: "master"
         PULL_REQUEST_TITLE: "[Testing] Use Actions"
         PASS_IF_EXISTS: "1"

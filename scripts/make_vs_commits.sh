@@ -13,8 +13,8 @@ git status
 git remote set-url origin https://mszhanyi:${pytorch_token}@github.com/mszhanyi/pytorch.git
 git push
 
-git checkout -b zhanyi/updatevcver
-git branch --set-upstream-to=origin/zhanyi/updatevcver zhanyi/updatevcver
+git checkout -b zhanyi/updatevs
+git branch --set-upstream-to=origin/zhanyi/updatevcver zhanyi/updatevs
 git pull
 python -m pip install lxml
 python ../scripts/updatevsver.py

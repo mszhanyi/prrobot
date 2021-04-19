@@ -13,13 +13,14 @@ git status
 git remote set-url origin https://mszhanyi:${pytorch_token}@github.com/mszhanyi/pytorch.git
 git push
 
+git branch -d zhanyi/updatevs
+git push origin --delete zhanyi/updatevs
+
 git checkout -b zhanyi/updatevs
-git branch --set-upstream-to=origin/zhanyi/updatevs zhanyi/updatevs
-git pull
 python -m pip install lxml
 python ../scripts/updatevsver.py
 
 git commit -a -m "Update Lastest VS"
 git status
-git push
+git push --set-upstream origin zhanyi/updatevs
 

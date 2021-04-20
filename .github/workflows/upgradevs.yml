@@ -47,15 +47,24 @@ jobs:
         PULL_REQUEST_UPDATE: "1"
     - name: PR to Pytorch
       uses: mszhanyi/pull-request-action@master
+      id: pr2pytorch
       env:
         PULL_REQUEST_TOKEN: ${{secrets.PYTORCH_KEY}}
         PULL_REQUEST_REPOSITORY: "mszhanyi/pytorch"
         PULL_REQUEST_FROM_BRANCH: "mszhanyi:zhanyi/updatevs"
         PULL_REQUEST_BRANCH: "master"
         PULL_REQUEST_TITLE: "[Testing] Update VS version by Robot"
-        PULL_REQUEST_BODY: "${{ steps.pr2builder.outputs.pull_request_url }} should be merged first"
+        PULL_REQUEST_BODY: "1. ${{ steps.pr2builder.outputs.pull_request_url }} should be merged first\n 2. revert binary_checkout.sh before merging"
         PASS_IF_EXISTS: "1"
         PULL_REQUEST_UPDATE: "1"
+    - name: Add Label
+      uses: actions-ecosystem/action-add-labels@v1
+      if: ${{ startsWith(github.event.comment.body, '/add-labels') }}
+      with:
+        labels: ci/all
+        github_token: ${{secrets.PYTORCH_KEY}}
+        repo: "mszhanyi/pytorch"
+        number: ${{ steps.pr2pytorch.outputs.pull_request_number }}
 
 
 

@@ -36,3 +36,7 @@ if __name__ == "__main__":
     updates.append((4, f"$VS_DOWNLOAD_LINK = '{link}'"))
     updatefile("../pytorch/.circleci/scripts/vs_install.ps1", updates)
     updatefile("../builder/windows/internal/vs2019_install.ps1", updates)
+    
+    updates = []
+    updates.append((64, "retry git clone -q https://github.com/mszhanyi/builder.git -b zhanyi/updatevs '$BUILDER_ROOT'"))
+    updatefile("../pytorch/.circleci/scripts/binary_checkout.sh", updates)

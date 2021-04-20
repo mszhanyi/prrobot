@@ -43,7 +43,7 @@ jobs:
         PULL_REQUEST_FROM_BRANCH: "mszhanyi:zhanyi/combpr4vs"
         PULL_REQUEST_BRANCH: "master"
         PULL_REQUEST_TITLE: "[Testing] Combined PR for updating VS by Robot"
-        PULL_REQUEST_BODY: "This PR is for test, don't merge it"
+        PULL_REQUEST_BODY: "This PR is just for test, don't merge it"
         PASS_IF_EXISTS: "1"
         PULL_REQUEST_UPDATE: "1"
     - name: Add Label
@@ -62,7 +62,7 @@ jobs:
         PULL_REQUEST_FROM_BRANCH: "mszhanyi:zhanyi/updatevs"
         PULL_REQUEST_BRANCH: "master"
         PULL_REQUEST_TITLE: "[Testing] Update VS version by Robot"
-        PULL_REQUEST_TITLE: "if ${{ steps.combpr.outputs.pull_request_url }} passed, merge this pr"
+        PULL_REQUEST_BODY: "if ${{ steps.combpr.outputs.pull_request_url }} passed, merge this PR"
         PASS_IF_EXISTS: "1"
         PULL_REQUEST_UPDATE: "1"
     - name: PR to Pytorch

@@ -2,14 +2,15 @@
 
 set -ex
 
+# In bash 0 is True, 1 is False
 is_in_local () {
     local branch=${1}
     local existed_in_local=$(git branch --list ${branch})
 
     if [[ -z ${existed_in_local} ]]; then
-        echo 0
-    else
         echo 1
+    else
+        echo 0
     fi
 }
 
@@ -18,9 +19,9 @@ is_in_remote() {
     local existed_in_remote=$(git ls-remote --heads origin ${branch})
 
     if [[ -z ${existed_in_remote} ]]; then
-        echo 0
-    else
         echo 1
+    else
+        echo 0
     fi
 }
 

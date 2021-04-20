@@ -38,11 +38,11 @@ add_vs_commit () {
     git remote set-url origin https://mszhanyi:${pytorch_token}@github.com/mszhanyi/${repo}.git
     git push
 
-    if [[ -z $(is_in_local "zhanyi/updatevs") ]]; then
+    if [[ $(is_in_local "zhanyi/updatevs") ]]; then
         echo "remove local branch"
         git branch -d zhanyi/updatevs
     fi
-    if [[ -z $(is_in_remote "zhanyi/updatevs") ]]; then
+    if [[ $(is_in_remote "zhanyi/updatevs") ]]; then
         echo "remove remote branch"
         git push origin --delete zhanyi/updatevs
     fi

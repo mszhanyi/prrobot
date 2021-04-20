@@ -34,6 +34,25 @@ jobs:
       working-directory: ./scripts
       run: |
         bash make_vs_commits.sh
+    - name: Combined PR For test
+      id: combpr
+      uses: mszhanyi/pull-request-action@master
+      env:
+        PULL_REQUEST_TOKEN: ${{secrets.PYTORCH_KEY}}
+        PULL_REQUEST_REPOSITORY: "mszhanyi/pytorch"
+        PULL_REQUEST_FROM_BRANCH: "mszhanyi:zhanyi/combpr4vs"
+        PULL_REQUEST_BRANCH: "master"
+        PULL_REQUEST_TITLE: "[Testing] Combined PR for updating VS by Robot"
+        PULL_REQUEST_BODY: "This PR is for test, don't merge it"
+        PASS_IF_EXISTS: "1"
+        PULL_REQUEST_UPDATE: "1"
+    - name: Add Label
+      uses: actions-ecosystem/action-add-labels@v1
+      with:
+        labels: ci/all
+        github_token: ${{secrets.PYTORCH_KEY}}
+        repo: "mszhanyi/pytorch"
+        number: ${{ steps.combpr.outputs.pull_request_number }}
     - name: PR to Builder
       id: pr2builder
       uses: mszhanyi/pull-request-action@master
@@ -43,6 +62,7 @@ jobs:
         PULL_REQUEST_FROM_BRANCH: "mszhanyi:zhanyi/updatevs"
         PULL_REQUEST_BRANCH: "master"
         PULL_REQUEST_TITLE: "[Testing] Update VS version by Robot"
+        PULL_REQUEST_TITLE: "if ${{ steps.combpr.outputs.pull_request_url }} passed, merge this pr"
         PASS_IF_EXISTS: "1"
         PULL_REQUEST_UPDATE: "1"
     - name: PR to Pytorch
@@ -54,16 +74,10 @@ jobs:
         PULL_REQUEST_FROM_BRANCH: "mszhanyi:zhanyi/updatevs"
         PULL_REQUEST_BRANCH: "master"
         PULL_REQUEST_TITLE: "[Testing] Update VS version by Robot"
-        PULL_REQUEST_BODY: "1. ${{ steps.pr2builder.outputs.pull_request_url }} should be merged first\n 2. revert binary_checkout.sh before merging"
+        PULL_REQUEST_BODY: "1. ${{ steps.pr2builder.outputs.pull_request_url }} should be merged first\n"
         PASS_IF_EXISTS: "1"
         PULL_REQUEST_UPDATE: "1"
-    - name: Add Label
-      uses: actions-ecosystem/action-add-labels@v1
-      with:
-        labels: bug
-        github_token: ${{secrets.PYTORCH_KEY}}
-        repo: "mszhanyi/pytorch"
-        number: ${{ steps.pr2pytorch.outputs.pull_request_number }}
+
 
 
 

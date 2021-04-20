@@ -49,13 +49,25 @@ add_vs_commit () {
     git checkout -b zhanyi/updatevs
 
     python ../scripts/updatevsver.py
-
-    git commit -a -m "Update Lastest VS"
+    
+    # create pure commit
+    git add .circleci/scripts/*.ps1
+    git commit -m "Update Lastest VS"
     git status
     git push --set-upstream origin zhanyi/updatevs
+
+    #create combine pr for test.
+    if [[ repo == "pytorch" ]]; then
+        git checkout -d zhanyi/combpr4vs
+        git add .circleci/scripts/binary_checkout.sh
+        git commit -m "combine builder branch"
+        git status
+        git push --set-upstream origin zhanyi/combpr4vs
+    fi
 }
 
 python -m pip install lxml
-add_vs_commit  "pytorch"
 add_vs_commit  "builder"
+add_vs_commit  "pytorch"
+
 

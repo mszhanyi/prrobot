@@ -51,6 +51,8 @@ add_vs_commit () {
     python ../scripts/updatevsver.py
     
     # create pure commit
+    pwd
+    ls
     git add .circleci/scripts/*.ps1
     git commit -m "Update Lastest VS"
     git status

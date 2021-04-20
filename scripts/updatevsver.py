@@ -33,7 +33,7 @@ if __name__ == "__main__":
     
     updates = []
     updates.append((3, f"# {version} buildTools"))
-    updates.append((4, f"$VS_DOWNLOAD_LINK = '{link}'"))
+    updates.append((4, f'$VS_DOWNLOAD_LINK = "{link}"'))
     updatefile("../pytorch/.circleci/scripts/vs_install.ps1", updates)
     updatefile("../builder/windows/internal/vs2019_install.ps1", updates)
     

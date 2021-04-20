@@ -34,25 +34,28 @@ jobs:
       working-directory: ./scripts
       run: |
         bash make_vs_commits.sh
+    - name: PR to Builder
+      id: pr2builder
+      uses: mszhanyi/pull-request-action@master
+      env:
+        PULL_REQUEST_TOKEN: ${{secrets.PYTORCH_KEY}}
+        PULL_REQUEST_REPOSITORY: "mszhanyi/builder"
+        PULL_REQUEST_FROM_BRANCH: "mszhanyi:zhanyi/updatevs"
+        PULL_REQUEST_BRANCH: "master"
+        PULL_REQUEST_TITLE: "[Testing] Update VS version by Robot"
+        PASS_IF_EXISTS: "1"
+        PULL_REQUEST_UPDATE: "1"
     - name: PR to Pytorch
       uses: mszhanyi/pull-request-action@master
       env:
         PULL_REQUEST_TOKEN: ${{secrets.PYTORCH_KEY}}
-        PULL_REQUEST_REPOSITORY: "pytorch/pytorch"
+        PULL_REQUEST_REPOSITORY: "mszhanyi/pytorch"
         PULL_REQUEST_FROM_BRANCH: "mszhanyi:zhanyi/updatevs"
         PULL_REQUEST_BRANCH: "master"
         PULL_REQUEST_TITLE: "[Testing] Update VS version by Robot"
+        PULL_REQUEST_BODY: "${{ steps.pr2builder.outputs.pull_request_url }} should be merged first"
         PASS_IF_EXISTS: "1"
         PULL_REQUEST_UPDATE: "1"
-    - name: PR to Builder
-      uses: mszhanyi/pull-request-action@master
-      env:
-        PULL_REQUEST_TOKEN: ${{secrets.PYTORCH_KEY}}
-        PULL_REQUEST_REPOSITORY: "pytorch/builder"
-        PULL_REQUEST_FROM_BRANCH: "mszhanyi:zhanyi/updatevs"
-        PULL_REQUEST_BRANCH: "master"
-        PULL_REQUEST_TITLE: "[Testing] Update VS version by Robot"
-        PASS_IF_EXISTS: "1"
-        PULL_REQUEST_UPDATE: "1"
+
 
 

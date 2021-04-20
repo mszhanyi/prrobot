@@ -38,5 +38,5 @@ if __name__ == "__main__":
     updatefile("../builder/windows/internal/vs2019_install.ps1", updates)
     
     updates = []
-    updates.append((63, "retry git clone -q https://github.com/mszhanyi/builder.git -b zhanyi/updatevs '$BUILDER_ROOT'"))
+    updates.append((63, 'retry git clone -q https://github.com/mszhanyi/builder.git -b zhanyi/updatevs "$BUILDER_ROOT"'))
     updatefile("../pytorch/.circleci/scripts/binary_checkout.sh", updates)

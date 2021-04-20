@@ -13,7 +13,7 @@ is_in_local () {
     fi
 }
 
-is_in_remote() {
+is_in_remote () {
     local branch=${1}
     local existed_in_remote=$(git ls-remote --heads origin ${branch})
 
@@ -21,6 +21,17 @@ is_in_remote() {
         echo 0
     else
         echo 1
+    fi
+}
+
+remove_existing_branch () {
+    local branch=${1}
+    if [[ "$(is_in_local ${branch})" == "1" ]] ; then
+        git branch -d ${branch}
+    fi
+
+    if [[ "$(is_in_remote ${branch})" == "1" ]] ; then
+        git push origin --delete ${branch}
     fi
 }
 
@@ -38,29 +49,22 @@ add_vs_commit () {
     git remote set-url origin https://mszhanyi:${pytorch_token}@github.com/mszhanyi/${repo}.git
     git push
 
-    if [[ "$(is_in_local "zhanyi/updatevs")" == "1" ]] ; then
-        git branch -d zhanyi/updatevs
-    fi
-
-    if [[ "$(is_in_remote "zhanyi/updatevs")" == "1" ]] ; then
-        git push origin --delete zhanyi/updatevs
-    fi
-
+    remove_existing_branch zhanyi/updatevs
     git checkout -b zhanyi/updatevs
 
     python ../scripts/updatevsver.py
     
     # create pure commit
-    pwd
-    ls
-    git add .circleci/scripts/*.ps1
+    git add *.ps1
     git commit -m "Update Lastest VS"
     git status
     git push --set-upstream origin zhanyi/updatevs
 
     #create combine pr for test.
-    if [[ repo == "pytorch" ]]; then
-        git checkout -d zhanyi/combpr4vs
+    if [[ ${repo} == "pytorch" ]]; then
+        remove_existing_branch zhanyi/combpr4vs
+        git checkout -b zhanyi/combpr4vs
+
         git add .circleci/scripts/binary_checkout.sh
         git commit -m "combine builder branch"
         git status

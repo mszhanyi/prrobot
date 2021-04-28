@@ -3,6 +3,7 @@
 import requests
 import lxml.html as lh
 
+
 def get_lastest_vs():
     url =  "https://docs.microsoft.com/en-us/visualstudio/releases/2019/history"
 

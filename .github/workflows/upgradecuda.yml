@@ -1,0 +1,44 @@
+name: Update CUDA in Pytorch
+on:
+  push:
+    branches:
+      - main
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    env:
+      pytorch_token: ${{secrets.PYTORCH_KEY}}
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+      with:
+        persist-credentials: false
+        fetch-depth: 0
+    - name: Checkout Pytorch
+      uses: actions/checkout@v2
+      with:
+        repository: mszhanyi/pytorch
+        persist-credentials: false
+        path: pytorch
+        fetch-depth: 0
+    - name: Make Commits
+      working-directory: ./scripts
+      id: cudacommit
+      env:
+       CUDA_MAJOR_VERSION: "11"
+       CUDA_MINOR_VERSION: "3"
+       CUDA_INSTALLER_NAME: "cuda_11.3.0_465.89_win10"
+      run: |
+        bash make_cuda_commits.sh
+    - name: PR to Pytorch
+      uses: mszhanyi/pull-request-action@master
+      id: pr2pytorch
+      env:
+        PULL_REQUEST_TOKEN: ${{secrets.PYTORCH_KEY}}
+        PULL_REQUEST_REPOSITORY: "mszhanyi/pytorch"
+        PULL_REQUEST_FROM_BRANCH: "mszhanyi:gh/updatecuda"
+        PULL_REQUEST_BRANCH: "master"
+        PULL_REQUEST_TITLE: "[Testing] Update CUDA version by Robot"
+        PULL_REQUEST_BODY: "update to ${{ steps.cudacommit.env.cuda_major_version }} "
+        PASS_IF_EXISTS: "1"
+        PULL_REQUEST_UPDATE: "1"

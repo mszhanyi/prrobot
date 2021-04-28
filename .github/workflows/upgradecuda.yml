@@ -40,6 +40,12 @@ jobs:
         PULL_REQUEST_FROM_BRANCH: "mszhanyi:gh/updatecuda"
         PULL_REQUEST_BRANCH: "master"
         PULL_REQUEST_TITLE: "[Testing] Update CUDA version by Robot"
-        PULL_REQUEST_BODY: "update to ${{ steps.cudacommit.env.cuda_major_version }} "
         PASS_IF_EXISTS: "1"
         PULL_REQUEST_UPDATE: "1"
+    - name: Add Label
+      uses: actions-ecosystem/action-add-labels@v1
+      with:
+        labels: ci/all
+        github_token: ${{secrets.PYTORCH_KEY}}
+        repo: "mszhanyi/pytorch"
+        number: ${{ steps.pr2pytorch.outputs.pull_request_number }}

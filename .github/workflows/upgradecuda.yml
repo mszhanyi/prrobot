@@ -28,6 +28,7 @@ jobs:
        CUDA_MAJOR_VERSION: "11"
        CUDA_MINOR_VERSION: "3"
        CUDA_INSTALLER_NAME: "cuda_11.3.0_465.89_win10"
+       MASTER_ONLY: "1"
       run: |
         bash make_cuda_commits.sh
     - name: PR to Pytorch

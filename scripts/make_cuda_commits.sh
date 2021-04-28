@@ -23,6 +23,8 @@ add_cuda_commit () {
     git checkout -b ${branch}
 
     python ../scripts/updatecuda.py
+    
+    .circleci/regenerate.sh
 
     git commit -am "Update Cuda"
     git status

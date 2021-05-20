@@ -25,6 +25,7 @@ add_vs_commit () {
     
     # create pure commit
     git add *.ps1
+    git add *.md
     git commit -m "Update Lastest VS"
     git status
     git push --set-upstream origin zhanyi/updatevs

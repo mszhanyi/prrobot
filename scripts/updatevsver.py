@@ -31,7 +31,7 @@ def updatefile(file_name, updates):
 
 def update_ver_readme(version):
     pattern_str = r"\[([^\[]+)\](?=\(https:\/\/github.com\/pytorch\/pytorch\/blob/master\/.circleci\/scripts\/vs_install.ps1\))"
-    file_name = "../pytorch/.circleci/scripts/readme.md"
+    file_name = "../pytorch/readme.md"
     with open(file_name, "r") as f:
         content = f.read()
         new_content = re.sub(pattern_str, f"[{version}]", content)

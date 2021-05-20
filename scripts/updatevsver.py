@@ -2,7 +2,7 @@
 
 import requests
 import lxml.html as lh
-
+import re
 
 def get_lastest_vs():
     url =  "https://docs.microsoft.com/en-us/visualstudio/releases/2019/history"
@@ -29,8 +29,19 @@ def updatefile(file_name, updates):
         if len(lines) > 0:
             f.writelines(lines)
 
+def update_ver_readme(version):
+    pattern_str = r"\[([^\[]+)\](?=\(https:\/\/github.com\/pytorch\/pytorch\/blob/master\/.circleci\/scripts\/vs_install.ps1\))"
+    file_name = "../pytorch/.circleci/scripts/readme.md"
+    with open(file_name, "r") as f:
+        content = f.read()
+        new_content = re.sub(pattern_str, f"[{version}]", content)
+    with open(file_name, "w") as f1:
+        f1.write(new_content)
+        
+
 if __name__ == "__main__":
     version, link = get_lastest_vs()
+    update_ver_readme(version)
     
     updates = []
     updates.append((3, f"# {version} buildTools"))

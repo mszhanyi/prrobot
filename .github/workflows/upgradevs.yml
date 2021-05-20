@@ -1,8 +1,8 @@
 name: Update VS in Pytorch
 on:
-  #push:
-  #  branches:
-  #    - main
+  push:
+    branches:
+      - main
   schedule:
     - cron: '0 12 1/15 * *'
 jobs:
@@ -39,7 +39,7 @@ jobs:
       uses: mszhanyi/pull-request-action@master
       env:
         PULL_REQUEST_TOKEN: ${{secrets.PYTORCH_KEY}}
-        PULL_REQUEST_REPOSITORY: "pytorch/pytorch"
+        PULL_REQUEST_REPOSITORY: "mszhanyi/pytorch"
         PULL_REQUEST_FROM_BRANCH: "mszhanyi:zhanyi/combpr4vs"
         PULL_REQUEST_BRANCH: "master"
         PULL_REQUEST_TITLE: "[Testing] Combined PR for updating VS by Robot"
@@ -51,14 +51,14 @@ jobs:
       with:
         labels: ci/all
         github_token: ${{secrets.PYTORCH_KEY}}
-        repo: "pytorch/pytorch"
+        repo: "mszhanyi/pytorch"
         number: ${{ steps.combpr.outputs.pull_request_number }}
     - name: PR to Builder
       id: pr2builder
       uses: mszhanyi/pull-request-action@master
       env:
         PULL_REQUEST_TOKEN: ${{secrets.PYTORCH_KEY}}
-        PULL_REQUEST_REPOSITORY: "pytorch/builder"
+        PULL_REQUEST_REPOSITORY: "mszhanyi/builder"
         PULL_REQUEST_FROM_BRANCH: "mszhanyi:zhanyi/updatevs"
         PULL_REQUEST_BRANCH: "master"
         PULL_REQUEST_TITLE: "[Testing] Update VS version in Builder by Robot"
@@ -70,7 +70,7 @@ jobs:
       id: pr2pytorch
       env:
         PULL_REQUEST_TOKEN: ${{secrets.PYTORCH_KEY}}
-        PULL_REQUEST_REPOSITORY: "pytorch/pytorch"
+        PULL_REQUEST_REPOSITORY: "mszhanyi/pytorch"
         PULL_REQUEST_FROM_BRANCH: "mszhanyi:zhanyi/updatevs"
         PULL_REQUEST_BRANCH: "master"
         PULL_REQUEST_TITLE: "[Testing] Update VS version by Robot"

@@ -12,7 +12,6 @@ jobs:
         pwd
       shell: bash 
     - name: check gflags
-      working-directory: .\scripts
       run: |
         pwd
       shell: bash

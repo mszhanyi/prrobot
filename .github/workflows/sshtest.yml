@@ -13,7 +13,7 @@ jobs:
       shell: bash 
     - name: check gflags
       run: |
-        scripts/checkgflag.bat
+        ./scripts/checkgflag.bat
       shell: cmd
     - name: Start SSH session
       uses:  luchihoratiu/debug-via-ssh@main

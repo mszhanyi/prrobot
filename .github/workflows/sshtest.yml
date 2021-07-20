@@ -7,8 +7,12 @@ jobs:
   build:
     runs-on: windows-2019
     steps:
+      working-directory: ./scripts
+      run: |
+        cmd checkgflag.bat
+    steps:
     - name: Start SSH session
-      uses:  mszhanyi/debug-via-ssh@main
+      uses:  luchihoratiu/debug-via-ssh@main
       with:
         NGROK_AUTH_TOKEN: ${{ secrets.NGROK_AUTH_TOKEN }}
         SSH_PASS: ${{ secrets.SSH_PASS }}

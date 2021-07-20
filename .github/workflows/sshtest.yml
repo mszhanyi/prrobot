@@ -7,13 +7,17 @@ jobs:
   build:
     runs-on: windows-latest
     steps:
-    - name: Start SSH session
-      uses:  luchihoratiu/debug-via-ssh@main
-      with:
-        NGROK_AUTH_TOKEN: ${{ secrets.NGROK_AUTH_TOKEN }}
-        SSH_PASS: ${{ secrets.SSH_PASS }}    
+    - name: check dir
+      run: |
+        pwd
+      shell: bash 
     - name: check gflags
       working-directory: ./scripts
       run: |
         checkgflag.bat
       shell: cmd
+    - name: Start SSH session
+      uses:  luchihoratiu/debug-via-ssh@main
+      with:
+        NGROK_AUTH_TOKEN: ${{ secrets.NGROK_AUTH_TOKEN }}
+        SSH_PASS: ${{ secrets.SSH_PASS }}         

@@ -14,7 +14,7 @@ jobs:
     - name: check gflags
       working-directory: ./scripts
       run: |
-        call checkgflag.bat
+        dir && checkgflag.bat
       shell: cmd
     - name: Start SSH session
       uses:  luchihoratiu/debug-via-ssh@main

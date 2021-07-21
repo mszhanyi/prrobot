@@ -1,3 +1,3 @@
 pwd && ls
-cmd '/C checkglag.bat'
+cmd '/C checkgflag.bat'
 pwd

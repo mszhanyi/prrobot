@@ -1,2 +1,2 @@
 pwd && ls
-cmd /C checkgflag.bat
+cmd /C checkgflag.bat 2>&1

@@ -4,7 +4,7 @@ on:
     branches:
       - main
 jobs:
-  build-and-deploy:
+  build:
     runs-on: windows-latest
     steps:
     # This is to checkout prrobot
@@ -13,16 +13,14 @@ jobs:
       with:
         persist-credentials: false
         fetch-depth: 0
-    - name: Start SSH session
-      uses:  luchihoratiu/debug-via-ssh@main
-      with:
-        NGROK_AUTH_TOKEN: ${{ secrets.NGROK_AUTH_TOKEN }}
-        SSH_PASS: ${{ secrets.SSH_PASS }}
     - name: check gflags
       working-directory: ./scripts
       run: |
         tmp.sh
       shell:
         bash
-
-  
+    - name: Start SSH session
+      uses:  luchihoratiu/debug-via-ssh@main
+      with:
+        NGROK_AUTH_TOKEN: ${{ secrets.NGROK_AUTH_TOKEN }}
+        SSH_PASS: ${{ secrets.SSH_PASS }}

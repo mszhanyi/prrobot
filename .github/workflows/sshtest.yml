@@ -16,7 +16,7 @@ jobs:
     - name: check gflags
       working-directory: ./scripts
       run: |
-        tmp.sh
+        bash tmp.sh
       shell:
         bash
     - name: Start SSH session

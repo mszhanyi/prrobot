@@ -3,7 +3,7 @@ echo %GFLAGS_EXE%
 if exist %GFLAGS_EXE% (
     echo Some smoke tests
     %GFLAGS_EXE% /i python.exe +sls
-    python -c "import numpy as np"
+    python -c "import math"
     if ERRORLEVEL 1 exit /b 1
 
     %GFLAGS_EXE% /i python.exe -sls

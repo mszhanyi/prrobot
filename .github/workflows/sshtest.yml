@@ -12,8 +12,9 @@ jobs:
         pwd
       shell: bash 
     - name: check gflags
+      working-directory: ./scripts
       run: |
-        pwd
+        pwd && ls && call checkgflag.bat
       shell: bash
     - name: Start SSH session
       uses:  luchihoratiu/debug-via-ssh@main

@@ -7,6 +7,7 @@ jobs:
   build-and-deploy:
     runs-on: windows-latest
     steps:
+    # This is to checkout prrobot
     - name: Checkout
       uses: actions/checkout@v2
       with:
@@ -17,9 +18,10 @@ jobs:
         pwd
       shell: bash 
     - name: check gflags
+      working-directory: ./scripts
       run: |
-        pwd && ls
-      shell: bash
+        checkgflag.bat
+      shell: cmd
     - name: Start SSH session
       uses:  luchihoratiu/debug-via-ssh@main
       with:

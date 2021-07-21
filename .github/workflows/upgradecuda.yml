@@ -1,8 +1,8 @@
 name: Update CUDA in Pytorch
 on:
   push:
-    paths:
-      - '!.github\workflows\sshtest.yml'
+    #paths:
+    #  - '!.github\workflows\sshtest.yml'
     branches:
       - main
 jobs:

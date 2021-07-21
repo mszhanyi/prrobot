@@ -2,6 +2,8 @@
 
 set -ex
 
+pwd
+
 source ./shared.sh
 
 add_cuda_commit () {

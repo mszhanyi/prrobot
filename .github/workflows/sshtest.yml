@@ -12,7 +12,7 @@ jobs:
         pwd
       shell: bash 
     - name: check gflags
-      working-directory: ./scripts
+      working-directory: scripts
       run: |
         pwd && ls && call checkgflag.bat
       shell: bash

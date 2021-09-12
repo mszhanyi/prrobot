@@ -19,7 +19,7 @@ jobs:
     - name: Checkout Pytorch
       uses: actions/checkout@v2
       with:
-        repository: mszhanyi/pytorch
+        repository: pytorch/pytorch
         persist-credentials: false
         path: pytorch
         fetch-depth: 0
@@ -39,7 +39,7 @@ jobs:
       uses: mszhanyi/pull-request-action@master
       env:
         PULL_REQUEST_TOKEN: ${{secrets.PYTORCH_KEY}}
-        PULL_REQUEST_REPOSITORY: "mszhanyi/pytorch"
+        PULL_REQUEST_REPOSITORY: "pytorch/pytorch"
         PULL_REQUEST_FROM_BRANCH: "mszhanyi:zhanyi/combpr4vs"
         PULL_REQUEST_BRANCH: "master"
         PULL_REQUEST_TITLE: "[Testing] Combined PR for updating VS by Robot"
@@ -52,7 +52,7 @@ jobs:
       with:
         labels: ci/binaries
         github_token: ${{secrets.PYTORCH_KEY}}
-        repo: "mszhanyi/pytorch"
+        repo: "pytorch/pytorch"
         number: ${{ steps.combpr.outputs.pull_request_number }}
     - name: PR to Builder
       id: pr2builder
@@ -72,7 +72,7 @@ jobs:
       id: pr2pytorch
       env:
         PULL_REQUEST_TOKEN: ${{secrets.PYTORCH_KEY}}
-        PULL_REQUEST_REPOSITORY: "mszhanyi/pytorch"
+        PULL_REQUEST_REPOSITORY: "pytorch/pytorch"
         PULL_REQUEST_FROM_BRANCH: "mszhanyi:zhanyi/updatevs"
         PULL_REQUEST_BRANCH: "master"
         PULL_REQUEST_TITLE: "[Testing] Update VS version by Robot"

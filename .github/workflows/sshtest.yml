@@ -13,11 +13,11 @@ jobs:
       with:
         persist-credentials: false
         fetch-depth: 0
-    - name: Setup tmate session
-      uses: mxschmitt/action-tmate@v3
-    - name: check gflags
-      working-directory: ./scripts
-      run: |
-        bash tmp.sh
-      shell:
-        bash
+    #- name: Setup tmate session
+    #  uses: mxschmitt/action-tmate@v3
+    #- name: check gflags
+    #  working-directory: ./scripts
+      #run: |
+      #  bash tmp.sh
+    #  shell:
+    #    bash

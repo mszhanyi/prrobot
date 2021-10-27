@@ -13,7 +13,11 @@ add_vs_commit () {
     git remote add upstream https://github.com/pytorch/${repo}
     git remote -v
     git fetch upstream
-    git merge upstream/master
+    if [ "${repo}" == "builder" ]; then
+        git merge upstream/main
+    else
+        git merge upstream/master
+    fi
     git status
     git remote set-url origin https://mszhanyi:${pytorch_token}@github.com/mszhanyi/${repo}.git
     git push

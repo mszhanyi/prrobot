@@ -61,7 +61,7 @@ jobs:
         PULL_REQUEST_TOKEN: ${{secrets.PYTORCH_KEY}}
         PULL_REQUEST_REPOSITORY: "mszhanyi/builder"
         PULL_REQUEST_FROM_BRANCH: "mszhanyi:zhanyi/updatevs"
-        PULL_REQUEST_BRANCH: "master"
+        PULL_REQUEST_BRANCH: "main"
         PULL_REQUEST_TITLE: "[Testing] Update VS version in Builder by Robot"
         PULL_REQUEST_BODY: "If ${{ steps.combpr.outputs.pull_request_url }} passed, merge this PR"
         PASS_IF_EXISTS: "1"
